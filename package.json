@@ -1,0 +1,13 @@
+{
+  "name": "sandbox",
+  "version": "1.0.0",
+  "description": "For learning JS",
+  "scripts": {
+    "test": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "js": "^0.1.0"
+  }
+}
