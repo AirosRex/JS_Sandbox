@@ -3,7 +3,7 @@ import LinkedList from "../data_structures/linked_list.js"
 // Creating an object for the LinkedList class
 var ll = new LinkedList();
 console.log(ll);
-
+console.log('Neato');
 /* MOVE THIS LINE DOWN TO ENABLE MORE CODE
 
 // Testing isEmpty on an empty list;

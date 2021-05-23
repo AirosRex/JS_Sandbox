@@ -13,6 +13,13 @@
  * @param {number[]} nums
  * @return {number[]}
  */
- var runningSum = function(nums) {
-    
+let runningSum = function(nums) {
+    let solution = [];
+    for (let i = 0; i < nums.length; i++) {
+        solution[i] = nums[i] + (i > 0 ? solution[i - 1] : 0);
+    }
+    return solution;
 };
+let input1 = [1, 2, 3, 4];
+let a = runningSum(input1);
+console.log(a);
