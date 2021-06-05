@@ -26,5 +26,26 @@
  * @return {number}
  */
  var sumOddLengthSubarrays = function(arr) {
+    let sum = 0;
+    let length = arr.length;
+
+
     
+    // Find max subset size
+    if(isEven(length)) {
+        let subsetSize = length - 1;
+    } else {
+        let subsetSize = length;
+    };
+
+    // Starting with largest subset, add all values to sum, then shrink subset size until all subsets have been exhausted
+    for (;subsetSize > 0; subsetSize - 2) {
+        for ( let i = 0; i <= (length - subsetSize); i++ ) {
+            for ( let j = i; j < (i +subsetSize); j++) {
+            sum += arr[j]
+            }
+        }
+
+    }
+    return sum; 
 };
