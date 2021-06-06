@@ -1,9 +1,11 @@
 /**
- * Given a string containing digits from 2-9 inclusive, return all
+ * Given a string containing exclusively digits (0-9), return all
  * possible letter combinations that the number could represent.
  * 
  * A mapping of digit to letters (just like on the telephone buttons) is given below.
- * Note that 1 does not map to any letters.
+ * Note that 0 and 1 just map to themselves since they don't have characters.
+ * 0 => 0
+ * 1 => 1
  * 2 => abc
  * 3 => def
  * 4 => ghi
