@@ -3,8 +3,6 @@ import LinkedList from "../data_structures/linked_list.js"
 // Creating an object for the LinkedList class
 var ll = new LinkedList();
 console.log(ll);
-console.log('Neato');
-/* MOVE THIS LINE DOWN TO ENABLE MORE CODE
 
 // Testing isEmpty on an empty list;
 // Returns true
@@ -25,9 +23,17 @@ ll.add(30);
 ll.add(40);
 ll.add(50);
 
+console.log(ll.isEmpty());
+
 // Returns 10 20 30 40 50
 ll.printList();
 
+ll.insertAt('hi', 1);
+
+ll.printList();
+
+
+/* MOVE THIS LINE DOWN TO ENABLE MORE CODE
 // Prints 50 from the list
 console.log("is element removed ?" + ll.removeElement(50));
 
