@@ -15,7 +15,7 @@ ll.add(10);
 ll.printList();
 
 // Returns 1
-console.log(ll.length());
+console.log(ll.getLength());
 
 // Adding more elements to the list
 ll.add(20);

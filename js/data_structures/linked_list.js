@@ -3,7 +3,7 @@ import Node from "./node.js"
 export default class LinkedList {
    constructor() {
       this.head = null;
-
+      this.length = 0;
    }
 
    // Prints out the list to console.log
@@ -24,21 +24,13 @@ export default class LinkedList {
    }
 
    // Gives the size of the list
-   length() {
-      let temp = this.head;
-      let count = 0;
-      while (temp != null) {
-         count++;
-         temp = temp.next;
-      }
-      return count;
+   getLength() {
+      return this.length;
    }
 
    // Return whether or not the list is empty
    isEmpty() {
-      if (this.head) {
-         return false;
-      } return true;
+      return this.head == null;
    }
 
    // Adds an element to the end of the list
@@ -52,11 +44,12 @@ export default class LinkedList {
          }
          cur.next = new Node(element);
       }
+      this.length++;
    }
 
    // Insert element at the specified location
    insertAt(element, index) {
-      if (index < 0 || index > this.length()) {
+      if (index < 0 || index > this.getLength()) {
          console.log('Outside of list');
          return ;
       }
@@ -74,7 +67,7 @@ export default class LinkedList {
          temp.next = cur.next;
          cur.next = temp;
       }
-
+      this.length++;
    }
 
    // Removes an element from the specified location
@@ -82,7 +75,7 @@ export default class LinkedList {
 
    }
 
-   // Finds the index of element
+   // Finds the index of the first instance of element
    indexOf(element) {
    }
 }
