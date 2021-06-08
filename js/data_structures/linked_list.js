@@ -110,4 +110,20 @@ export default class LinkedList {
 
       return 'Not in list';
    }
+
+   // Do this in-place; Don't just create a new linked list and assign it to HEAD
+   reverse() {
+      return this;
+   }
+
+   // Imagine someone did: ll.head.next.next.next = ll.head;
+   // Return true or false.
+   detectLoop() {
+   }
+
+   // Input: 17->15->8->12->10->5->4->1->7->6->NULL
+   // Output: 8->12->10->4->6->17->15->5->1->7->NULL
+   segregateOddsAndEvens() {
+      return this;
+   }
 }
