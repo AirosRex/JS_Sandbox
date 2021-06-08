@@ -29,13 +29,8 @@ console.log(ll.isEmpty());
 ll.printList();
 
 ll.insertAt('hi', 1);
-
 ll.printList();
-
-
-/* MOVE THIS LINE DOWN TO ENABLE MORE CODE
-// Prints 50 from the list
-console.log("is element removed ?" + ll.removeElement(50));
+console.log(ll.indexOf(30));
 
 // Prints 10 20 30 40
 ll.printList();
@@ -53,8 +48,8 @@ ll.printList();
 console.log("Is List Empty ? " + ll.isEmpty());
 
 // Remove 3rd element from the list
-console.log(ll.removeFrom(3));
+ll.removeFrom(1);
 
 // Prints 10 20 60 40
 ll.printList();
-*/
+

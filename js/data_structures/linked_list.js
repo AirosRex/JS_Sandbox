@@ -72,10 +72,39 @@ export default class LinkedList {
 
    // Removes an element from the specified location
    removeFrom(index) {
+      if (index < 0 || index >= this.length) {
+         console.log('Index out of bounds');
+         return;
+      }
 
+      if (index == 0 && !this.isEmpty()) {
+         this.head = this.head.next;
+         return;
+      }
+
+      let previous = this.head;
+      let current = previous;
+      for (let i = 0; i < index; i++) {
+         previous = current;
+         current = current.next;
+      }
+      previous.next = current.next;
    }
 
    // Finds the index of the first instance of element
    indexOf(element) {
+      let current = this.head;
+      let count = 0;
+
+      for (let i = 0; i < this.length; i++) {
+         if (element == current.element) {
+            return count;
+         }
+
+         current = current.next;
+         count++;
+      } 
+      
+      return 'Not in list';
    }
 }
