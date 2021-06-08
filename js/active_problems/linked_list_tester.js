@@ -18,10 +18,10 @@ ll.printList();
 console.log(ll.getLength());
 
 // Adding more elements to the list
-ll.add(20);
-ll.add(30);
-ll.add(40);
-ll.add(50);
+ll.add(20)
+  .add(30)
+  .add(40)
+  .add(50);
 
 console.log(ll.isEmpty());
 
@@ -53,3 +53,5 @@ ll.removeFrom(1);
 // Prints 10 20 60 40
 ll.printList();
 
+console.log(ll.add(11));
+ll.add(22).printList();

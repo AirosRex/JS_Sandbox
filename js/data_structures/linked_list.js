@@ -45,13 +45,14 @@ export default class LinkedList {
          cur.next = new Node(element);
       }
       this.length++;
+      return this;
    }
 
    // Insert element at the specified location
    insertAt(element, index) {
       if (index < 0 || index > this.getLength()) {
          console.log('Outside of list');
-         return ;
+         return this;
       }
       
       let temp = new Node(element);
@@ -68,18 +69,19 @@ export default class LinkedList {
          cur.next = temp;
       }
       this.length++;
+      return this;
    }
 
    // Removes an element from the specified location
    removeFrom(index) {
       if (index < 0 || index >= this.length) {
          console.log('Index out of bounds');
-         return;
+         return this;
       }
 
       if (index == 0 && !this.isEmpty()) {
          this.head = this.head.next;
-         return;
+         return this;
       }
 
       let previous = this.head;
@@ -89,6 +91,7 @@ export default class LinkedList {
          current = current.next;
       }
       previous.next = current.next;
+      return this;
    }
 
    // Finds the index of the first instance of element
@@ -104,7 +107,7 @@ export default class LinkedList {
          current = current.next;
          count++;
       } 
-      
+
       return 'Not in list';
    }
 }
