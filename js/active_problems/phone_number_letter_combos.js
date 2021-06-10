@@ -44,58 +44,52 @@
 
 const letterCombinations = (digits) => {
 
+   let translator = [
+      '0',
+      '1',
+      'abc',
+      'def',
+      'ghi',
+      'jkl',
+      'mno',
+      'pqrs',
+      'tuv',
+      'wxyz'
+   ];
 
-      //Separate into digits
-   function numberSplitter(number){   
-      let array = number.toString().split("");
-      return array.map(x => parseInt(x));
+   let masterArray = [];
+   let maxLength = 1;
+   for (let i = 0; i < digits.length; i++) {
+      let index = parseInt(digits[i], 10);
+      maxLength *= translator[index].length;
+   
    }
 
-      //Remove 0s and 1s
-   let arr = numberSplitter(digits);
-   for (let i = arr.length; i >= 0; i--) {
-      if (arr[i] == 0|| arr[i] == 1){
-         arr.splice(i,1);
+   //Filling array with blanks
+   for (let i = 0; i < maxLength; i++){
+      masterArray.push("");
+   }
+
+   //Running tally on repeat frequency needed
+   let divisor = 1;
+   for (let i = 0; i < digits.length; i++) {
+      let index = 0;
+      divisor *= translator[digits[i]].length;
+
+      for (let j = 0; j < maxLength; j++){
+         let repeat = maxLength/divisor;
+         if (j % repeat == 0 && j != 0) {
+            index++;
+            if (index == translator[digits[i]].length) {
+               index = 0;
+            }
          }
-   }
-
-      // used to find max length
-   function lengthFinder(num) {
-      if (num == 7 || num == 9) {
-         return 4;
-      } else {
-         return 3;
+         masterArray[j] += translator[digits[i]][index];
       }
    }
- 
-   let maxLength = 1;
-   for (let i = 0; i < arr.length; i++) {
-      maxLength = maxLength * lengthFinder(arr[i]);
-   }
-
-   function numberTranslator(num, index) {
-      let numToIndex = num - 2;
-      let indexToDepth = index + 1;
-
-      let translator = [
-         [2, 'a', 'b', 'c'],
-         [3, 'd', 'e', 'f'],
-         [4, 'g', 'h', 'i'],
-         [5, 'j', 'k', 'l'],
-         [6, 'm', 'n', 'o'],
-         [7, 'p', 'q', 'r', 's'],
-         [8, 't', 'u', 'v'],
-         [9, 'w', 'x', 'y', 'z']
-      ];
-
-      return translator[numToIndex][indexToDepth];
-   }
-
-   for (let i = 0; i < arr.length; i++) {
-      for (let j)
-   }
-   const res = maxLength;
+   const res = masterArray;
 
    return res;
 };
-console.log(letterCombinations("999"));
+
+console.log(letterCombinations("9219"));
