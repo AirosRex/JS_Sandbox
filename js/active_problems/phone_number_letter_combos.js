@@ -40,22 +40,65 @@
    let arr8 = {t, u, v};
    let arr9 = {w, x, y, z};
  * 
- */
+ */   
+let translator = [
+   '0',
+   '1',
+   'abc',
+   'def',
+   'ghi',
+   'jkl',
+   'mno',
+   'pqrs',
+   'tuv',
+   'wxyz',
+];
+
+const arrayMultiplier = (digits) => {
+   let res = [""];
+   // Iterate over digits
+   for (let i = 0; i < digits.length; i++) {
+      let newRes = [];
+      let index = parseInt(digits[i], 10);
+      let chars = translator[index];
+      // Iterate over results
+      for (let j = 0; j < res.length; j++) {
+         let result = res[j];
+         // Iterate over characters
+         for (let k = 0; k < chars.length; k++) {
+            let character = chars[k];
+            let combined = result + character;
+            newRes.push(combined);
+         }
+      }   
+      res = newRes;
+   }
+   return res;
+};
+
+
+const recursiveSolution = (digits) => {
+   let res = [];
+
+   const runner = (digitIndex, value) => {
+      console.log("Start: " + digitIndex + ' - ' + value);
+
+      if (digitIndex == digits.length) {
+         res.push(value);
+         return;
+      }
+      let charIndex = parseInt(digits[digitIndex], 10);
+      let chars = translator[charIndex];
+      for (let mapIndex = 0; mapIndex < chars.length; mapIndex++) {
+         runner(digitIndex + 1, value + chars[mapIndex]);
+      }
+   };
+
+   runner(0, "");
+   return res;
+};
 
 const letterCombinations = (digits) => {
-
-   let translator = [
-      '0',
-      '1',
-      'abc',
-      'def',
-      'ghi',
-      'jkl',
-      'mno',
-      'pqrs',
-      'tuv',
-      'wxyz'
-   ];
 
    let masterArray = [];
    let maxLength = 1;
@@ -64,7 +107,7 @@ const letterCombinations = (digits) => {
       maxLength *= translator[index].length;
    
    }
-
+   
    //Filling array with blanks
    for (let i = 0; i < maxLength; i++){
       masterArray.push("");
@@ -87,9 +130,8 @@ const letterCombinations = (digits) => {
          masterArray[j] += translator[digits[i]][index];
       }
    }
-   const res = masterArray;
 
-   return res;
+   return masterArray;
 };
 
-console.log(letterCombinations("9219"));
+console.log(recursiveSolution("222"));
