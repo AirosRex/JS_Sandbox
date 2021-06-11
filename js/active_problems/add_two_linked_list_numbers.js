@@ -20,7 +20,7 @@ const addLinkedLists2 = (l1, l2) => {
    let carry = 0;
    let n1 = l1.head;
    let n2 = l2.head;
-   let res = new LinkedList();
+   let result = new LinkedList();
 
    while (n1 || n2 || carry) {
       let sum = carry;
@@ -33,11 +33,11 @@ const addLinkedLists2 = (l1, l2) => {
          n2 = n2.next;
       }
 
-      res.add(sum % 10);
+      result.add(sum % 10);
       carry = Math.floor(sum / 10);
    }
 
-   return res;
+   return result;
 }
 
 const addLinkedLists = (l1, l2) => {
