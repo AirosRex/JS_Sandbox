@@ -13,65 +13,94 @@
  */
 
 import LinkedList from "../data_structures/linked_list.js";
+import Node from "../data_structures/node.js";
+
+
+const addLinkedLists2 = (l1, l2) => {
+   let carry = 0;
+   let n1 = l1.head;
+   let n2 = l2.head;
+   let res = new LinkedList();
+
+   while (n1 || n2 || carry) {
+      let sum = carry;
+      if (n1) {
+         sum += n1.element;
+         n1 = n1.next;
+      }
+      if (n2) {
+         sum += n2.element;
+         n2 = n2.next;
+      }
+
+      res.add(sum % 10);
+      carry = Math.floor(sum / 10);
+   }
+
+   return res;
+}
 
 const addLinkedLists = (l1, l2) => {
    let answer = new LinkedList();
    // Add beautiful code here
-   answer.head = new Node(0);
    
    //Setup Variables I'll need soon
    let rollover = 0;
-   let currentL1 = l1.head;
-   let currentL2 = l2.head;
-   let currentAns = answer.head;
+   let n1 = l1.head;
+   let n2 = l2.head;
 
+   let biggerLength = Math.max(l1.length, l2.length);
 
-   let biggerLength = 0;
-   if (l1.length > l2.length) {
-      biggerLength = l1.length;
-   } else {
-      biggerLength = l2.length;
-   }
-      
-
-   for (let i = 0; i <biggerLength; i++) {
+   for (let i = 0; i < biggerLength; i++) {
       //Add all current elements
-      currentAns.element = currentL1.element + currentL2.element + rollover;
       
-      //Load up L1 or set to 0
-      if (currentL1.next == null) {
-         currentL1.element = 0;
+      if (n1 == null) {
+         n1 = new Node(0);
+      }
+
+      if (n2 == null) {
+         n2 = new Node(0);
+      }
+
+      let sum = rollover + n1.element + n2.element;      
+      //Determine rollover
+      if (sum >= 10) {
+         sum -= 10;
+         rollover = 1;
       } else {
-         currentL1 = currentL1.next;
+         rollover = 0;
+      }
+
+      answer.add(sum);
+
+      //Load up L1 or set to 0
+      if (n1.next == null) {
+         n1.element = 0;
+      } else {
+         n1 = n1.next;
       }
 
       //Load up L2 or set it to 0
-      if (currentL2.next == null) {
-         currentL2.element = 0;
+      if (n2.next == null) {
+         n2.element = 0;
       } else {
-         currentL2 = currentl2.next;
+         n2 = n2.next;
       }
-
-      //Determine rollover
-      if (currentAns.element >= 10) {
-         currentAns.element -= 10;
-         rollover = 1;
-      } else {
-      rollover = 0;
-      }
-
-      //Prepare next node
-      //Question: Can I do this as one line?
-      currentAns.next = new Node(0); 
-      currentAns = currentAns.next;
    }
+
+   if (rollover == 1) {
+      answer.add(1);
+   }
+
    return answer;
 }
 
 // Testing code:
 let list1 = new LinkedList();
 let list2 = new LinkedList();
-list1.add(5).add(6).add(3);
-list2.add(8).add(4).add(2);
 
-addLinkedLists(list1, list2).printList();
+// list1.add(5).add(6).add(3);
+list2.add(8).add(4).add(2);
+// list2.add(8).add(4).add(9);
+
+addLinkedLists2(list1, list2).printList();
