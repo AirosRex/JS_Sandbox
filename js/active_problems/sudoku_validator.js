@@ -75,7 +75,7 @@ function secondSolution(board) {
          map[row] = map[col] = map[box] = true;
       }
    }
-
+   return true;
 }
 
 
