@@ -24,19 +24,13 @@ function isValidSudoku(board) {
             if (board[i][j] != " " && board[i][j] == board[i][k]){
                return false;
             }
-         }
-      }
-   }
-   //Vertical Check
-   for (let i = 0; i < boardLength; i++) {
-      for (let j = 0; j < boardLength - 1; j++) {
-         for (let k = j + 1; k < boardLength; k++) {
-            if (board [j][i] != " " && board[j][i] == board[k][i]){
+            if (board[j][i] != " " && board[j][i] == board[k][i]){
                return false;
             }
          }
       }
    }
+
    // 3x3 check
    for ( let vert = 0; vert < 3; vert++){
       for (let hor = 0; hor < 3; hor++) {
@@ -51,8 +45,10 @@ function isValidSudoku(board) {
 
          if(compare.length > 1) {
             for (let x = 0; x < compare.length - 1; x++){
-               if (compare[x] == compare[x +1]) {
-                  return false;
+               for (let y = x + 1; y < compare.length; y++) {
+                  if (compare[x] == compare[y]) {
+                     return false;
+                  }
                }
             }
          }
@@ -60,6 +56,26 @@ function isValidSudoku(board) {
    }
 
    return true;
+}
+function secondSolution(board) {
+   const map = {};
+   for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+         const val = board[i][j];
+         if (val == " ") {
+            continue;
+         }
+         const row = val + "r" + i;
+         const col = val + "c" + j; 
+         const box = val + "b" + Math.floor(i / 3) + Math.floor(j / 3);
+         if (map[row] || map[col] || map[box]) {
+            return false;
+         }
+        
+         map[row] = map[col] = map[box] = true;
+      }
+   }
+
 }
 
 
