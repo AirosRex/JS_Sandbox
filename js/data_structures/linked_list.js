@@ -103,7 +103,6 @@ export default class LinkedList {
          if (element == current.element) {
             return count;
          }
-
          current = current.next;
          count++;
       } 

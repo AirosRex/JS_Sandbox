@@ -41,7 +41,7 @@
    let arr9 = {w, x, y, z};
  * 
  */   
-let translator = [
+const translator = [
    '0',
    '1',
    'abc',
@@ -53,6 +53,20 @@ let translator = [
    'tuv',
    'wxyz',
 ];
+
+const map = {
+   0: '0',
+   1: '1',
+   2: 'abc',
+   3: 'def',
+   4: 'ghi',
+   5: 'jkl',
+   6: 'mno',
+   7: 'pqrs',
+   8: 'tuv',
+   9: 'wxyz',
+};
+
 
 const arrayMultiplier = (digits) => {
    let res = [""];
