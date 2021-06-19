@@ -16,9 +16,24 @@ export default class Stack {
    }
 
    push(element) {
+      if (this.head == null) {
+         this.head = new Node(element);
+      } else {
+         let cur = this.head;
+         while (cur.next != null) {
+            cur = cur.next;
+         }
+         cur.next = new Node(element);
+      }
+      this.length++;
+      return this;
    }
 
-   pop(element) {
+   pop() {
+      let cur = this.head;
+      let prev = null;
+      
+
    }
 
    // Returns the top element of the stack without removing it

@@ -54,4 +54,12 @@ ll.removeFrom(1);
 ll.printList();
 
 console.log(ll.add(11));
-ll.add(22).printList();
+ll.add(23).add(3).add(4).printList();
+
+console.log(ll.detectLoop());
+
+ll.segregateOddsAndEvens();
+ll.printList()
+
+ll.reverse2();
+ll.printList();

@@ -11,6 +11,7 @@ export default class Queue {
    }
 
    getLength() {
+      return this.length;
    }
 
    isEmpty() {
@@ -19,10 +20,11 @@ export default class Queue {
    enqueue(element) {
    }
 
-   dequeue(element) {
+   dequeue() {
    }
 
    // Returns the top element of the queue without removing it
    peek() {
+      return this.head;
    }
 }

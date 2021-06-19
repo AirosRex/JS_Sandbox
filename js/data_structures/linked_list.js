@@ -1,9 +1,15 @@
 import Node from "./node.js"
 
 export default class LinkedList {
-   constructor() {
+   constructor(values) {
       this.head = null;
       this.length = 0;
+      
+      if (Array.isArray(values)) {
+         values.forEach(element => {
+            this.add(element);
+         });
+      }
    }
 
    // Prints out the list to console.log
@@ -112,17 +118,105 @@ export default class LinkedList {
 
    // Do this in-place; Don't just create a new linked list and assign it to HEAD
    reverse() {
+
+      if (this.head == null){
+         return;
+      }
+      let storage = [];
+      let advance = this.head;
+      //Make array with all values
+      while (advance.next != null) {
+         storage.push(advance.element);
+         advance = advance.next;
+      }
+      storage.push(advance.element);
+
+      //Feed values back in backwards
+      advance = this.head;
+      for (let i = storage.length - 1; i >= 0; i--) {
+         advance.element = storage[i];
+         advance = advance.next;
+      }
+
       return this;
    }
 
+   reverse2() {
+
+      let prev = null;
+      let current = this.head;
+      let next = null;
+      while (current) {
+         next = current.next;
+         current.next = prev;
+         prev = current;
+         current = next;
+      }
+
+      this.head = prev;
+      return this;
+         
+
+   }
    // Imagine someone did: ll.head.next.next.next = ll.head;
    // Return true or false.
    detectLoop() {
+      if (this.head == null){
+         return false;
+      }
+
+      let runner = this.head;
+      let storage = [];
+      while (runner != null) {
+        for (let i = 0; i < storage.length; i++) {
+           if (storage[i] == runner) {
+              return true;
+           }
+        }
+        storage.push(runner);
+        runner = runner.next;
+      }
+      return false;
+
    }
 
    // Input: 17->15->8->12->10->5->4->1->7->6->NULL
    // Output: 8->12->10->4->6->17->15->5->1->7->NULL
    segregateOddsAndEvens() {
+
+      if (this.head == null){
+         return;
+      }
+      let evenStorage = [];
+      let oddStorage = [];
+      let otherStorage = [];
+      let advance = this.head;
+      //go through linked list up until last element
+      while (advance != null) {
+         if (advance.element == null || advance.element == NaN || advance.element == undefined) {
+            otherStorage.push(advance.element);
+         } else if (advance.element % 2 == 0) {
+            evenStorage.push(advance.element);
+         } else {
+            oddStorage.push(advance.element);   
+         }
+         advance = advance.next;
+      }
+
+      advance = this.head;
+      for (let i = 0; i < evenStorage.length; i++) {
+         advance.element = evenStorage[i];
+         advance = advance.next;
+         console.log(i);
+      }
+      for (let i = 0; i < oddStorage.length; i++) {
+         advance.element = oddStorage[i];
+         advance = advance.next;
+      }
+      for (let i = 0; i < otherStorage.length; i++) {
+         advance.element = otherStorage[i];
+         advance = advance.next;
+      }
       return this;
    }
 }
