@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "For learning JS",
   "scripts": {
-    "test": ""
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "js": "^0.1.0"
+  },
+  "devDependencies": {
+    "jest": "^27.0.5"
   }
 }
