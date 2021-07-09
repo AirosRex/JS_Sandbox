@@ -83,15 +83,17 @@ function solveSudoku(board) {
     if (i < 0) {
       return "no possible solution";
     }
-    if (board[emptyLocation[i][0]][emptyLocation[i][1]] == 9) {
-      board[emptyLocation[i][0]][emptyLocation[i][1]] = " ";
+    let first = emptyLocation[i][0];
+    let second = emptyLocation[i][1];
+    if (board[first][second] == 9) {
+      board[first][second] = " ";
       i--;
       continue;
     }
-    if (board[emptyLocation[i][0]][emptyLocation[i][1]] == " ") {
-      board[emptyLocation[i][0]][emptyLocation[i][1]] = 1;
-    } else if (board[emptyLocation[i][0]][emptyLocation[i][1]] < 9) {
-      board[emptyLocation[i][0]][emptyLocation[i][1]]++;
+    if (board[first][second] == " ") {
+      board[first][second] = 1;
+    } else {
+      board[first][second]++;
     }
 
     if (sudokuValidator(board)) {
@@ -103,7 +105,45 @@ function solveSudoku(board) {
   return board;
 }
 
-const board1 = [
+function isValid(board, i, j, n) {
+  for (let k = 0; k < 9; k++) {
+    const boxI = 3 * Math.floor(i / 3) + Math.floor(k / 3); 
+    const boxJ = 3 * Math.floor(j / 3) + Math.floor(k % 3); 
+
+    if (board[i][k] == n || board[k][j] == n || board[boxI][boxJ] == n) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function sudokuSolver2(board) {
+
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (board[i][j] == " ") {
+        for (let n = 1; n <= 9; n++) {
+          if (isValid(board, i, j, n)){
+            board[i][j] = n.toString();
+            const solved = sudokuSolver2(board); 
+            if (solved !== false) {
+              return solved;
+            }
+          }
+          board[i][j] = " "; 
+        }
+        return false;
+      }
+    }
+  }
+
+  return board;
+}
+
+
+
+
+const board = [
   ["5", "3", " ", " ", "7", " ", " ", "6", " "],
   ["6", " ", " ", "1", "9", "5", " ", " ", " "],
   [" ", "9", "8", " ", " ", " ", " ", " ", " "],
@@ -114,7 +154,7 @@ const board1 = [
   [" ", " ", " ", "4", "1", "9", "8", " ", "5"],
   [" ", " ", " ", " ", "8", " ", " ", "7", "9"],
 ];
-const board = [
+const board1 = [
   ["1", "5", "8", "7", "6", "3", "9", "2", "4"],
   [" ", " ", " ", "9", " ", " ", "1", " ", " "],
   ["9", "2", "6", " ", " ", "5", " ", " ", " "],
@@ -126,4 +166,4 @@ const board = [
   [" ", "7", " ", "5", " ", "9", "3", "1", " "],
 ];
 
-console.log(solveSudoku(board));
+console.log(sudokuSolver2(board1));
