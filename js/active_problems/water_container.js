@@ -5,24 +5,16 @@
  * water. */
 
 function inchworms(array) {
-    const length = array.length;
     let maxVolume = 0;
-    // lp == leftPointer
-    // rp == rightPointer
-    let lp = 0;
-    let rp = length - 1;
+    let left = 0; 
+    let right = array.length - 1;
 
-    while (lp != rp) {
-        if (Math.min(array[lp], array[rp]) * (rp - lp) > maxVolume) {
-            maxVolume = Math.min(array[lp], array[rp]) * (rp - lp); 
-        }
-        if (array[lp] == array[rp] && rp - lp > 1) {
-            lp++;
-            rp--;
-        } else if (array[lp] == array[rp]) {
-            lp++;
+    while (left < right) {
+        maxVolume = Math.max(Math.min(array[left], array[right]) * (right - left), maxVolume); 
+        if (array[left] < array[right]) {
+            left++;
         } else {
-            array[lp] < array[rp] ? lp++ : rp--;
+            right--;
         }
     }
     return "Max volume = " + maxVolume;
@@ -50,6 +42,6 @@ function volume(array) {
     //return array[solution[0]] + " -> " + array[solution[1]] + " = " + solution[2];
 }
 
-const array = [1, 4, 6, 2, 3, 7, 2, 9, 1, 5];
+const array = [1, 5, 6, 2, 3, 7, 2, 9, 1, 5];
 
 console.log(inchworms(array));
