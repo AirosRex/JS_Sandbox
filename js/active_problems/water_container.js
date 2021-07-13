@@ -4,7 +4,29 @@
  * the x-axis forms a container, such that the container contains the most
  * water. */
 
+function inchworms(array) {
+    const length = array.length;
+    let maxVolume = 0;
+    // lp == leftPointer
+    // rp == rightPointer
+    let lp = 0;
+    let rp = length - 1;
 
+    while (lp != rp) {
+        if (Math.min(array[lp], array[rp]) * (rp - lp) > maxVolume) {
+            maxVolume = Math.min(array[lp], array[rp]) * (rp - lp); 
+        }
+        if (array[lp] == array[rp] && rp - lp > 1) {
+            lp++;
+            rp--;
+        } else if (array[lp] == array[rp]) {
+            lp++;
+        } else {
+            array[lp] < array[rp] ? lp++ : rp--;
+        }
+    }
+    return "Max volume = " + maxVolume;
+}
 
 function volume(array) {
     const length = array.length;
@@ -24,10 +46,10 @@ function volume(array) {
             }
         }
     }
-    return solution;
+    return "Max volume: " + solution;
     //return array[solution[0]] + " -> " + array[solution[1]] + " = " + solution[2];
 }
 
 const array = [1, 4, 6, 2, 3, 7, 2, 9, 1, 5];
 
-console.log(volume(array));
+console.log(inchworms(array));
