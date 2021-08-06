@@ -5,17 +5,26 @@
 function rainCatcher(array){
     let collection = 0;
 
-    let leftMax = array[0];
-    let rightMax = array[array.length - 1];
-    let left = 1;
+    let leftMax = 0;
+    let rightMax = 0;
+
+    let left = 0;
     let right = array.length - 1;
 
-    while (left < right) {
+    while (left <= right) {
         if (array[left] < array[right]) {
-            array[left] >= leftMax ? leftMax = array[left] : collection += (leftMax - array[left]);
+            if (array[left] >= leftMax) {
+                leftMax = array[left];
+            } else {
+                collection += leftMax - array[left];
+            }
             left++;
         } else {
-            array[right] >= rightMax ? rightMax = array[right] : collection += (rightMax - array[right]);
+            if (array[right] >= rightMax) {
+                rightMax = array[right];
+            } else {
+                collection += rightMax - array[right];
+            }
             right--;
         }
     }
@@ -55,6 +64,8 @@ function collector(array) {
     return collection;
 }
 
+const test1 = [1, 0, 1];
+const test2 = [0];
 const array = [0, 5, 3, 2, 6, 7, 2, 3, 1, 4, 0];
 
-console.log(rainCatcher(array));
+console.log(rainCatcher(test1));
