@@ -5,15 +5,14 @@ An Anagram is a word or phrase formed by rearranging the letters of a different 
 
 //Size complexity = O(n)
 //Time Complexity = O(n^2)
-function sort(strs) {
+function sort1(strs) {
     let anagrams = [];
     let answer = [];
     for (let i = 0; i < strs.length; i++){
         let orderedText = strs[i].split('').sort().join('');
-        console.log(orderedText);
         let found = false;
         for (let j = 0; j < anagrams.length; j++) {
-            if (orderedText == anagrams[j].split('').sort().join('')) {
+            if (orderedText == anagrams[j]) {
                 answer[j]+= ", " + strs[i];
                 found = true;
             }
@@ -24,7 +23,24 @@ function sort(strs) {
         }
     }
     return answer;
+}-0
+// Time complexity = O(n*klog(k))
+// n = number of strings in strs
+// k = length of longest string
+// Size Complexity = O(2n)
+function sort2(strs) {
+    let answer = {};
+    for (let i = 0; i < strs.length; i++){
+        let orderedText = strs[i].split('').sort().join('');
+
+        if (answer[orderedText]) {
+            answer[orderedText].push(strs[i]);
+        } else {
+            answer[orderedText] = [strs[i]];
+        }
+    }
+    return Object.values(answer);
 }
 
 const strs = ['eat', 'ate', 'tea', 'thee'];
-console.log(sort(strs));
+console.log(sort2(strs));
