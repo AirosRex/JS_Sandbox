@@ -1,25 +1,32 @@
 /**
- * Given an array nums. We define a running sum of an array as:
- * runningSum[i] = sum(nums[0]...nums[i]).
+ * Given the number n, return the sum of all positive integers less than or equal to n
  * 
- * Return the running sum of nums.
- * 
- * Input: nums = [1,2,3,4]
- * Output: [1,3,6,10]
- * Explanation: [1, 1+2, 1+2+3, 1+2+3+4]
+ * ex: If n = 5
+ * return: 1 + 2 + 3 + 4 + 5 = 15
  */
 
-/**
- * @param {number[]} nums
- * @return {number[]}
- */
-let runningSum = function(nums) {
-    let solution = [];
-    for (let i = 0; i < nums.length; i++) {
-        solution[i] = nums[i] + (i > 0 ? solution[i - 1] : 0);
+function runningSum(n) {
+    let sum = 0;
+    for (let i = 0; i <= n; i++) {
+        sum += i;
     }
-    return solution;
-};
-let input1 = [1, 2, 3, 4];
-let a = runningSum(input1);
-console.log(a);
+    return sum;
+}
+function runningSumWhile(n) {
+    let sum = 0;
+    while (n) {
+        sum += n;
+        n--;
+    }
+    return sum;
+}
+
+function runningSumRecursive(n) {       
+    //return n <= 0 ? 0 : n + runningSumRecursive(n - 1);
+    return n > 0 ? n + runningSumRecursive(n - 1) : 0;
+}
+module.exports = {
+    runningSum,
+    runningSumWhile,
+    runningSumRecursive,
+}
