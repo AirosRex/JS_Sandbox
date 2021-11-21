@@ -5,13 +5,14 @@ An integer is a palindrome when it reads the same backward as forward. For examp
 */
 
 function palindrome(input) {
-    for (let i = 0; i < input.length/2; i++) {
-        if (input[i] != input[(input.length - i)]) {
+    let number = String(input);
+    for (let i = 0; i < (Math.floor(number.length / 2)); i++) {
+        if (number[i] != number[(number.length - (i + 1))]) {
             return false;
         }
     }
     return true;
 }
 
-const input = 1234321;
+const input = 1234564321;
 console.log(palindrome(input));
