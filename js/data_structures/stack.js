@@ -10,6 +10,7 @@ export default class Stack {
    }
 
    getLength() {
+      
    }
 
    isEmpty() {
