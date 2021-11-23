@@ -14,5 +14,42 @@ function palindrome(input) {
     return true;
 }
 
-const input = 1234564321;
-console.log(palindrome(input));
+function palindrome2(input) {
+    let number = String(input);
+    let i = 0;
+    while(i < (Math.floor(number.length / 2))) {
+        if (number[i] != number[(number.length - (i + 1))]) {
+            return false;
+        }
+        i++;
+    }
+    return true;
+}
+/*
+Determine if a string can form a palindrome after one element is removed
+*/
+function singleremoval(input) {
+    let pal = String(input);
+    let i = 0;
+    let j = pal.length - 1;
+    while (i < j) {
+        let skip = false;
+        if (pal[i] == pal[j]) {
+            i++;
+            j--;
+        } else if (pal[i + 1] == pal[j] && skip == false) {
+            i = i + 2;
+            j--;
+            skip = true;
+        } else if (pal[i] == pal[j - 1] && skip == false) {
+            i++;
+            j = j - 2;
+            skip == true;
+        } else {
+            return false;
+        }
+    }
+    return true;
+}
+const input = 12344321;
+console.log(singleremoval(input));
