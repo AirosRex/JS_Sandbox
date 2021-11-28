@@ -32,8 +32,12 @@ function singleremoval(input) {
     let pal = String(input);
     let i = 0;
     let j = pal.length - 1;
+    if (j < 2) {
+        console.log("Please provide three or more characters or digits");
+        return false;
+    }
+    let skip = false;
     while (i < j) {
-        let skip = false;
         if (pal[i] == pal[j]) {
             i++;
             j--;
@@ -51,5 +55,5 @@ function singleremoval(input) {
     }
     return true;
 }
-const input = 12344321;
+const input = 1325446521;
 console.log(singleremoval(input));
