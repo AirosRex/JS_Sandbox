@@ -94,6 +94,6 @@ function longest_substring (input) {
 
 //console.log(longest_substring());
 //console.log(longest_substring(1));
-console.log(longest_substring('bbbbbbb'));
+//console.log(longest_substring('bbbbbbb'));
 //console.log(longest_substring('121qw1e'));
 //console.log(longest_substring('123456789abcdefghij1kl2mon5pqrstuvwxyz'));
