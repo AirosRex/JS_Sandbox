@@ -31,15 +31,53 @@ s consists of English letters (lower-case and upper-case), ',' and '.'.
 1 <= numRows <= 1000
 */
 
-function zigzag (string s, int numRows) {
+function zigzag (s, numRows) {
+    if (numRows == 1) {
+        return s;
+    } 
+
     let charArray = [];
     for (let i = 0; i < s.length; i++) {
         charArray.push(s.charAt(i));
     }
 
     let arr = [];
+    let j = 0;
+    let k = 0;
+    let decending = true;
     for (i=0; i< s.length; i++){
-        
-
+        arr[j][k] = charArray[i];
+        if (k < (numRows - 1 ) && decending == true) {
+            k++;
+        } else if (k == (numRows - 1)) {
+            decending = false;
+            k--;
+            j++;
+        } else if (k > 0 && decending == false) {
+            k--;
+            j++;
+        } else if (k == 0 && decending == false) {
+            decending = true;
+            k++;
+        }
     }
+    jMax = j;
+    j = 0;
+    k = 0;
+
+    for (i=0; i< s.length; i++){
+        while (typeof arr[j][k] != string) {
+            if (j < jMax) {
+                j++;
+            } else {
+                j = 0;
+                k++;
+            }
+        }
+        charArray[i] = arr[j][k];
+    }   
+
+    return charArray.join("");
+
 }
+
