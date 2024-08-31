@@ -35,7 +35,6 @@ function zigzag (s, numRows) {
     if (numRows == 1) {
         return s;
     } 
-
     let charArray = [];
     for (let i = 0; i < s.length; i++) {
         charArray.push(s.charAt(i));
@@ -76,8 +75,6 @@ function zigzag (s, numRows) {
         }
         charArray[i] = arr[j][k];
     }   
-
     return charArray.join("");
-
 }
 
